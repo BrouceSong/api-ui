@@ -20,9 +20,10 @@ steps:
     password:
       from_secret: ssh_passwd
     script:
-      - pwd && ls -l
       - cd /home/songwenwen/www/api-ui/
+      - pwd && ls -l
       - git pull origin master
+      - rm -rf dist/*
       - cnpm run build
       - pwd && ls -l
       - docker build -t api-ui:v1 .
