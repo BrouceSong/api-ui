@@ -1,35 +1,51 @@
 <template>
   <div id="app">
     <el-container>
-      <el-header>
+      <el-header height="auto">
         <el-menu
           :default-active="activeIndex"
           class="el-menu-demo"
           mode="horizontal"
           @select="handleSelect"
+          text-color="#696969"
+          active-text-color="#FFA500"
         >
-          <el-menu-item index="1">处理中心</el-menu-item>
-          <el-submenu index="2">
-            <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-            <el-submenu index="2-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="2-4-1">选项1</el-menu-item>
-              <el-menu-item index="2-4-2">选项2</el-menu-item>
-              <el-menu-item index="2-4-3">选项3</el-menu-item>
-            </el-submenu>
-          </el-submenu>
-          <el-menu-item index="3" disabled>消息中心</el-menu-item>
-          <el-menu-item index="4">
-            <a href="https://www.ele.me" target="_blank">订单管理</a>
-          </el-menu-item>
+        <el-row>
+          <el-col :span="1" :offset="4">
+            <el-menu-item index="1">首页</el-menu-item>
+          </el-col>
+          <el-col :span="1">
+            <el-menu-item index="2">文章</el-menu-item>
+          </el-col>
+          <el-col :span="1" :offset="10">
+            <el-menu-item index="3">消息</el-menu-item>
+          </el-col>
+          <el-col :span="2">
+            <el-menu-item index="4">
+              <el-link icon="el-icon-user" :underline="false">个人中心</el-link>
+            </el-menu-item>
+          </el-col>
+        </el-row>
         </el-menu>
+        <el-carousel height="500px" indicator-position="outside">
+          <el-carousel-item v-for="item in banners" :key="item">
+            <img :src="item">
+          </el-carousel-item>
+        </el-carousel>
       </el-header>
-      <el-main></el-main>
-      <el-footer></el-footer>
+      <el-main>
+        <el-row :gutter="12" v-for="v in lists" :key="v">
+          <el-col span="15" :offset="4">
+            <el-card class="content-list-card">
+                {{v }}
+            </el-card>
+          </el-col>
+        </el-row>
+      </el-main>
+      <el-footer>
+      </el-footer>
     </el-container>
+    <el-backtop visibility-height="200"></el-backtop>
   </div>
 </template>
 
@@ -38,7 +54,28 @@ export default {
   name: 'App',
   data () {
     return {
-      activeIndex: '1'
+      activeIndex: '1',
+      banners: [
+        '/static/image/banner_1.jpg',
+        '/static/image/banner_2.jpg',
+        '/static/image/banner_3.jpg'
+      ],
+      lists: [
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……'
+      ]
     }
   },
   methods: {
@@ -56,6 +93,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.el-header {
+  padding:0px;
+}
+.el-menu {
+  background: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  width: 100%;
+  font-size: 50px;
+  line-height: 60px;
+}
+.content-list-card {
+  width:100%;
+  height:auto;
+  margin: 10px auto;
 }
 </style>
