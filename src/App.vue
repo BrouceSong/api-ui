@@ -97,7 +97,7 @@ export default {
 .el-header {
   padding:0px;
 }
-.el-menu {
+#app .el-menu {
   background: rgba(255, 255, 255, 0.5);
   position: fixed;
   z-index: 9999;
