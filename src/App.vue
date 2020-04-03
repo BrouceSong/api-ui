@@ -94,7 +94,7 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-.el-header {
+#app .el-header {
   padding:0px;
 }
 #app .el-menu {
