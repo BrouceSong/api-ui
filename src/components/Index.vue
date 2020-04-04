@@ -1,23 +1,104 @@
-
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 <template>
-  <div id="app">
-    <el-button @click="visible = true">Button</el-button>
-    <el-dialog :visible.sync="visible" title="Hello world">
-      <p>Try Element</p>
-    </el-dialog>
-  </div>
+  <el-main>
+    <el-carousel height="500px" indicator-position="outside">
+        <el-carousel-item v-for="item in banners" :key="item">
+        <img :src="item">
+        </el-carousel-item>
+    </el-carousel>
+    <el-row>
+        <el-col :span="13" :offset="2">
+            <el-row :gutter="12" v-for="v in lists" :key="v">
+                <el-col>
+                    <el-card class="content-list-card">
+                        {{v }}
+                    </el-card>
+                </el-col>
+            </el-row>
+        </el-col>
+        <el-col :span="6" :offset="1">
+            <el-card class="right-hot-card">
+              <div slot="header" >
+                <span>热门推荐</span>
+              </div>
+              <div v-for="v in lists" :key="v" class="hot-card-list">
+                {{v | ellipsis(v)}}
+              </div>
+            </el-card>
+        </el-col>
+    </el-row>
+  </el-main>
 </template>
-<!-- import Vue before Element -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<!-- import JavaScript -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<script>
 export default {
-  name: 'Index',
-  el: '#app',
+  name: 'App',
   data () {
     return {
-      visible: false
+      activeIndex: '1',
+      banners: [
+        '/static/image/banner_1.jpg',
+        '/static/image/banner_2.jpg',
+        '/static/image/banner_3.jpg'
+      ],
+      lists: [
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……',
+        '人生在世，我们常常产生想解释点什么的想法。然而，一旦解释起来，却发现任何人解释都是那样的苍白无力，甚至还会越抹越黑。因此，做人不需要解释，便成为智者的选择。山不解释自己的高度，并不影响它的耸立云端；海不解释自己的深度，并不影响它容纳百川；地不解释自己的厚度，但没有谁能取代她作为承载万物的地位……'
+      ],
+      username: 'BrouceSong',
+      gits: []
+    }
+  },
+  filters: {
+    ellipsis (value) {
+      if (!value) return ''
+      if (value.length > 20) {
+        return value.slice(0, 20) + '...'
+      }
+      return value
+    }
+  },
+  mounted () {
+  },
+  methods: {
+    handleSelect (key, keyPath) {
+      console.log(key, keyPath)
     }
   }
 }
+</script>
+
+<style>
+#app .el-main {
+  padding:0;
+}
+.content-list-card {
+  width:100%;
+  height:auto;
+  margin: 10px auto;
+}
+.img {
+    background-repeat: no-repeat;
+    background-position:center center;
+    background-size: cover;
+    width:165px;
+    height:105px;
+}
+.right-hot-card {
+  text-align: left;
+}
+.hot-card-list {
+  margin:0px 10px 10px 0
+}
+</style>
