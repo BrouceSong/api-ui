@@ -98,7 +98,7 @@ export default {
 .hot-card-list {
   margin:0px 10px 10px 0
 }
-.index-content {
+#app .index-content {
   position: absolute;
   top: 400px;
   z-index: 8777;
