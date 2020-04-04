@@ -10,7 +10,6 @@ workspace:
 steps:
 - name: 部署api-ui项目
   image: appleboy/drone-ssh
-  pull: true
   settings:
     host:
       from_secret: host
