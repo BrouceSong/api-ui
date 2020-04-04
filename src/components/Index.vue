@@ -1,16 +1,18 @@
 <template>
   <el-main>
-    <el-carousel height="500px" indicator-position="outside">
-        <el-carousel-item v-for="item in banners" :key="item">
-        <img :src="item">
-        </el-carousel-item>
-    </el-carousel>
     <el-row>
+      <el-carousel height="600px" direction="vertical">
+          <el-carousel-item v-for="item in banners" :key="item">
+            <img :src="item">
+          </el-carousel-item>
+      </el-carousel>
+    </el-row>
+    <el-row class="index-content">
         <el-col :span="13" :offset="2">
             <el-row :gutter="12" v-for="v in lists" :key="v">
                 <el-col>
                     <el-card class="content-list-card">
-                        {{v }}
+                        {{v}}
                     </el-card>
                 </el-col>
             </el-row>
@@ -22,6 +24,7 @@
               </div>
               <div v-for="v in lists" :key="v" class="hot-card-list">
                 {{v | ellipsis(v)}}
+                <el-divider></el-divider>
               </div>
             </el-card>
         </el-col>
@@ -88,17 +91,22 @@ export default {
   height:auto;
   margin: 10px auto;
 }
-.img {
-    background-repeat: no-repeat;
-    background-position:center center;
-    background-size: cover;
-    width:165px;
-    height:105px;
-}
 .right-hot-card {
   text-align: left;
+  margin:12px 0 0;
 }
 .hot-card-list {
   margin:0px 10px 10px 0
+}
+.index-content {
+  position: absolute;
+  top: 400px;
+  z-index: 8777;
+}
+.index-content .el-card {
+  background: rgba(255, 255, 255, 0.9);
+}
+.el-menu.el-menu--horizontal {
+    border-bottom: 0;
 }
 </style>
