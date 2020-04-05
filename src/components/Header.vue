@@ -39,9 +39,9 @@ export default {
   data () {
     return {
       activeIndex: '1',
-      users: [
+      users: {
         username: ''
-      ]
+      }
     }
   },
   mounted () {
