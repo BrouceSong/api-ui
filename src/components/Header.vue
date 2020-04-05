@@ -23,7 +23,7 @@
         <el-col :span="2">
           <router-link  to="/login">
             <el-menu-item index="4">
-                <el-link icon="el-icon-user" :underline="false">个人中心</el-link>
+                <el-link icon="el-icon-user" :underline="false">{{users.username || "个人中心"}}</el-link>
             </el-menu-item>
           </router-link>
         </el-col>
@@ -33,11 +33,33 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'App',
   data () {
     return {
-      activeIndex: '1'
+      activeIndex: '1',
+      users: []
+    }
+  },
+  mounted () {
+    this.loadUsers()
+  },
+  methods: {
+    loadUsers () {
+      var This = this
+      var token = This.$cookie.get('token')
+      axios.get('http://songwenwen.xyz:8080/v1/user', {
+        params: {
+          token: token
+        }
+      }
+      ).then(function (res) {
+        This.users = res.data.data
+        console.log(This.users)
+      }).catch(function (error) {
+        This.$message.error(error)
+      })
     }
   }
 }

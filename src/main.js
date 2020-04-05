@@ -9,6 +9,9 @@ import './assets/base.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import DefaultLayout from './layouts/Default'
 import Fragment from 'vue-fragment'
+// 配置cookie
+import cookie from 'vue-cookie'
+Vue.prototype.$cookie = cookie
 Vue.use(Fragment.Plugin)
 
 Vue.component('default-layout', DefaultLayout)
