@@ -40,7 +40,7 @@ export default {
     return {
       activeIndex: '1',
       users: [
-        username: '',
+        username: ''
       ]
     }
   },
