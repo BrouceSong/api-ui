@@ -36,7 +36,7 @@ export default {
 }
 </script>
 <style>
-.el-backtop {
+#app .el-backtop {
   index:8888;
 }
 </style>
