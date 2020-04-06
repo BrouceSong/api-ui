@@ -22,7 +22,6 @@ export default {
       console.log(key, keyPath)
     },
     getTop () {
-      console.log(1111)
       let timer = setInterval(() => {
         let top = document.documentElement.scrollTop
         let speed = Math.ceil(top / 5)
@@ -37,6 +36,6 @@ export default {
 </script>
 <style>
 #app .el-backtop {
-  index:8888;
+  z-index:8888;
 }
 </style>
