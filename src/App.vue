@@ -13,7 +13,8 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$route.meta.layout, this.defaultLayout)
+  },
+  methods: {
   },
   computed: {
     layout () {

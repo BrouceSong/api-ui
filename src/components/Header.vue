@@ -57,6 +57,7 @@ export default {
         }
       }
       ).then(function (res) {
+        res.data.data.username = res.data.data.username || ''
         This.users = res.data.data
         console.log(This.users)
       }).catch(function (error) {
