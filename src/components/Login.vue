@@ -32,6 +32,7 @@ export default {
   methods: {
     onLogin (e) {
       var This = this
+      This.$cookie.set('token', '')
       var type = e.target.getAttribute('type')
       axios.get('http://songwenwen.xyz:8080/v1/login', {
         params: {
