@@ -61,7 +61,7 @@ export default {
           code: code
         }
       }).then(function (res) {
-        This.$cookie.set('token', res.data.data.token)
+        This.$cookie.set('token', res.data.data.token, 7 * 3600)
         This.loading = false
       }).catch(function (error) {
         This.$message.error(error)
