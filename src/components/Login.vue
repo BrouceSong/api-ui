@@ -34,7 +34,7 @@ export default {
       var This = this
       This.$cookie.set('token', '')
       var type = e.target.getAttribute('type')
-      axios.get('http://songwenwen.xyz:8080/v1/login', {
+      axios.get('http://49.232.18.147:8080/v1/login', {
         params: {
           type: type
         }
@@ -56,7 +56,7 @@ export default {
         return
       }
       This.loading = true
-      axios.get('http://songwenwen.xyz:8080/v1/callback', {
+      axios.get('http://49.232.18.147:8080/v1/callback', {
         params: {
           code: code
         }

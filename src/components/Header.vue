@@ -51,7 +51,7 @@ export default {
     loadUsers () {
       var This = this
       var token = This.$cookie.get('token')
-      axios.get('http://songwenwen.xyz:8080/v1/user', {
+      axios.get('http://49.232.18.147:8080/v1/user', {
         params: {
           token: token
         }

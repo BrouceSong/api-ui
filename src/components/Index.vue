@@ -67,7 +67,7 @@ export default {
     },
     loadlist () {
       var This = this
-      axios.get('http://songwenwen.xyz:8080/v1/post/list', {
+      axios.get('http://49.232.18.147:8080/v1/post/list', {
         params: {}
       }
       ).then(function (res) {
