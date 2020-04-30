@@ -1,110 +1,105 @@
 <template>
   <el-main>
-    <el-row>
-      <el-carousel height="600px" direction="vertical">
-          <el-carousel-item v-for="item in banners" :key="item">
-            <img :src="item">
-          </el-carousel-item>
-      </el-carousel>
+    <el-row :gutter="20" class="content-list" v-for="(v,k) in contents" :key="k">
+      <el-col class="content-name">{{v.name}}:</el-col>
+      <el-col class="content-text" style="padding-left: 30px;">{{v.content}}</el-col>
     </el-row>
-    <el-row class="index-content">
-        <el-col :span="13" :offset="2">
-            <el-row :gutter="12" v-for="v in lists" :key="v">
-                <el-col>
-                    <el-card class="content-list-card">
-                        {{v.desc}}
-                    </el-card>
-                </el-col>
-            </el-row>
-        </el-col>
-        <el-col :span="6" :offset="1">
-            <el-card class="right-hot-card">
-              <div slot="header" >
-                <span>热门推荐</span>
-              </div>
-              <div v-for="v in lists" :key="v" class="hot-card-list">
-                {{v.desc | ellipsis(v.desc)}}
-                <el-divider></el-divider>
-              </div>
-            </el-card>
-        </el-col>
+    <el-row :gutter="20" class="send-msg">
+      <el-col :span="2">&gt;</el-col>
+      <el-col :span="22">
+        <el-input
+          type="textarea"
+          placeholder="请输入内容"
+          v-model="content"
+          maxlength="100"
+          show-word-limit
+          rows="3"
+          :clearable="true"
+          resize="none"
+          @keyup.enter.native="send"
+        ></el-input>
+      </el-col>
     </el-row>
   </el-main>
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name: 'App',
   data () {
     return {
-      activeIndex: '1',
-      banners: [
-        '/static/image/banner_1.jpg',
-        '/static/image/banner_2.jpg',
-        '/static/image/banner_3.jpg'
+      contents: [
+        {
+          name: '张三',
+          content: 'hello word'
+        },
+        {
+          name: '李四',
+          content: '别瞎BB'
+        },
+        {
+          name: '王二麻子',
+          content: '素质素质'
+        },
+        {
+          name: '张三',
+          content: '我说话,你个SB插什么嘴,不想听就GUN'
+        },
+        {
+          name: '李四',
+          content: 'CNM,你自己GUN吧'
+        },
+        {
+          name: '小王',
+          content: '.....'
+        }
       ],
-      lists: [],
       username: 'BrouceSong',
-      gits: []
-    }
-  },
-  filters: {
-    ellipsis (value) {
-      if (!value) return ''
-      if (value.length > 20) {
-        return value.slice(0, 20) + '...'
-      }
-      return value
+      content: ''
     }
   },
   mounted () {
-    this.loadlist()
   },
   methods: {
-    handleSelect (key, keyPath) {
-      console.log(key, keyPath)
-    },
-    loadlist () {
-      var This = this
-      axios.get('http://49.232.18.147:8080/v1/post/list', {
-        params: {}
+    send (v) {
+      var _This = this
+      var content = _This.content.replace(/ +/g, '')
+      content = _This.content.replace(/[\r\n]/g, '')
+      if (!content) {
+        _This.$message({
+          message: '你还没有输入聊天信息哦!',
+          type: 'warning'
+        })
+        _This.content = ''
+        return false
       }
-      ).then(function (res) {
-        This.lists = res.data.data
-      }).catch(function (error) {
-        This.$message.error(error)
+      _This.contents.push({
+        name: '我',
+        content: _This.content
       })
+      _This.content = ''
     }
   }
 }
 </script>
 
 <style>
-#app .el-main {
-  padding:0;
+#app .send-content {
+  color: #ffffff;
 }
-.content-list-card {
-  width:100%;
-  height:auto;
-  margin: 10px auto;
+#app .content-list {
+  color: #ffffff;
+  margin-bottom: 10px;
 }
-.right-hot-card {
-  text-align: left;
-  margin:12px 0 0;
+#app .content-text {
+  padding: 10px 30px 0px;
 }
-.hot-card-list {
-  margin:0px 10px 10px 0
-}
-#app .index-content {
-  position: absolute;
-  top: 400px;
-  z-index: 8777;
-}
-.index-content .el-card {
-  background: rgba(255, 255, 255, 0.9);
-}
-.el-menu.el-menu--horizontal {
-    border-bottom: 0;
+#app .send-msg {
+  color: #ffffff;
+  position: fixed;
+  bottom: 0px;
+  padding: 20px;
+  width: 800px;
 }
 </style>

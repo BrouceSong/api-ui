@@ -3,19 +3,19 @@
     <el-container>
       <Header />
       <slot />
-      <el-footer>
-      </el-footer>
-      <el-backtop visibility-height=200>
-      </el-backtop>
+      <Footer />
+      <el-backtop visibility-height="200"></el-backtop>
     </el-container>
   </div>
 </template>
 <script>
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Footer
   },
   methods: {
     handleSelect (key, keyPath) {
@@ -34,8 +34,9 @@ export default {
   }
 }
 </script>
+
 <style>
 #app .el-backtop {
-  z-index:8888;
+  z-index: 8888;
 }
 </style>
